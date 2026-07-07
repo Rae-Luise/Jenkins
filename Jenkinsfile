@@ -57,10 +57,10 @@ pipeline {
                         sh 'git config --global user.name "jenkins"'
                         //新增这一行：强制切换到 main 分支
                         sh 'git checkout main'
-                        sh 'git remote set-url origin https://Rae-Luise:${PASS}@github.com/Rae-Luise/Jenkins.git'
+                        sh 'git remote set-url origin https://${USER}:${PASS}@github.com/Rae-Luise/Jenkins.git'
                         sh 'git add .'
-                        sh 'git commit -m "auto updte by jenkins: version bump"'
-                        sh 'git push origin HEAD:main'
+                        sh 'git commit -m "auto updte by jenkins: ${newVersion}"'
+                        sh 'git push'
                     }
                 }
             }
