@@ -55,7 +55,9 @@ pipeline {
                         //git config here for the first time run
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
-                        sh 'git remote set-url origin https://Rae-Luise:${PASS}@github.com/Rae-Luise/Jenkins.git'
+                        //sh 'git remote set-url origin https://Rae-Luise:${PASS}@github.com/Rae-Luise/Jenkins.git'
+                        // 动态获取当前分支正在追踪的远程仓库名称（例如 'origin'）
+                        sh 'git remote set-url $(git remote get-url --push $(git rev-parse --abbrev-ref --symbolic-full-name @{u} | cut -d/ -f1)) https://Rae-Luise:${PASS}@github.com/Rae-Luise/Jenkins.git'
                         sh 'git add .'
                         sh 'git commit -m "auto updte by jenkins: version bump"'
                         sh 'git push origin HEAD:main'
