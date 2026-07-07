@@ -51,18 +51,16 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    //withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         //git config here for the first time run
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
+                        sh "git remote set-url origin https://$USER:$PASS@github.com/Rae-Luise/Jenkins.git"
                         sh 'git add .'
                         //新增这一行：强制切换到 main 分支
                         //sh 'git checkout main'
-                        //sh "git remote set-url origin https://${USER}:${PASS}@github.com/Rae-Luise/Jenkins.git"
-                        //sh 'git add .'
                         sh 'git commit -m "auto update by jenkins"'
-                        sh "git remote set-url origin git@github.com:Rae-Luise/Jenkins.git"
-                        sh 'mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts'
+                        //sh "git remote set-url origin git@github.com:Rae-Luise/Jenkins.git"
                         sh 'git push -f origin HEAD:main'
 
                     }
