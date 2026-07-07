@@ -42,7 +42,7 @@ pipeline {
         stage('Build and Push docker image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]){
-                    sh "docker build -t docker-hub-id/myapp:${IMAGE_NAME} ."
+                    sh "docker build -t luiserae/docker-project:${IMAGE_NAME} ."
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
                     sh "docker push luiserae/docker-project:${IMAGE_NAME}"
                 }
