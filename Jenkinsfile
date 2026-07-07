@@ -55,13 +55,13 @@ pipeline {
                         //git config here for the first time run
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
-                        sh 'git commit -m "auto update by jenkins before checkout main"'
+
                         //新增这一行：强制切换到 main 分支
                         sh 'git checkout main'
                         //sh "git remote set-url origin https://${USER}:${PASS}@github.com/Rae-Luise/Jenkins.git"
-                        sh "git remote set-url origin git@github.com:Rae-Luise/Jenkins.git"
                         sh 'git add .'
                         sh 'git commit -m "auto update by jenkins"'
+                        sh "git remote set-url origin git@github.com:Rae-Luise/Jenkins.git"
                         sh 'git push -u origin main'
 
                     }
