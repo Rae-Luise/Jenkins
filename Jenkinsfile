@@ -62,14 +62,14 @@ pipeline {
                         //sh 'git commit -m "auto updte by jenkins: ${newVersion}"'
                         //sh 'git push'
                         // git diff --quiet 如果没有差异会返回 0 (true)，如果有差异返回 1 (false)
-                        sh '''
+                        sh """
                                     if ! git diff --quiet; then
                                         git commit -m "auto update by jenkins: ${newVersion}"
                                         git push
                                     else
                                         echo "No changes to commit, skipping git push."
                                     fi
-                        '''
+                        """
                     }
                 }
             }
