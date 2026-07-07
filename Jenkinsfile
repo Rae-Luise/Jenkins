@@ -32,7 +32,7 @@ pipeline {
                script {
                     //enter app directory, because that's where package.json and tests are located
                     dir("app") {
-                        # install all dependencies needed for running tests
+                        //install all dependencies needed for running tests
                         sh "npm install"
                         sh "npm run test"
                     }
