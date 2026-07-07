@@ -62,7 +62,7 @@ pipeline {
                         //sh 'git add .'
                         sh 'git commit -m "auto update by jenkins"'
                         sh "git remote set-url origin git@github.com:Rae-Luise/Jenkins.git"
-                        sh 'ssh-keyscan github.com >> ~/.ssh/known_hosts'
+                        sh 'mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts'
                         sh 'git push -f origin HEAD:main'
 
                     }
